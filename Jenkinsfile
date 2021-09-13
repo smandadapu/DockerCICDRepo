@@ -23,10 +23,10 @@ stages {
      steps{
 	     script{
 		     dir('main'){
-			     withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
-			     {
+			    // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
+			    // {
      codeChekOut("${params.branch_name}")
-			     }
+			  //   }
 		     }
 	     }
 }
