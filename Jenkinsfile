@@ -21,7 +21,11 @@ stages {
     stage("code checkout")
 	{
      steps{
-     codeChekout("${params.branch_name}")
+	     script{
+		     dir('main'){
+     codeChekOut("${params.branch_name}")
+		     }
+	     }
 }
 }
 }
@@ -31,9 +35,8 @@ stages {
 
 }
 
-def codeChekout(String branch_name, String git_sourcecode_repo)
+def codeChekOut(String branch_name, String git_sourcecode_repo)
 {
  git branch: branch_name
- credentialsId: git_cred
 
 }
