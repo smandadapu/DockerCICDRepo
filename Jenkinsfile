@@ -13,7 +13,7 @@ string(name: 'env_name', defaultValue: 'dev', description: 'deployment environme
 } 
 
 environment {
-git_sourcecode_repo='https://github.com/smandadapu/DockerCICDRepo.git'
+GITHUB_MAIN_CODE='https://github.com/smandadapu/DockerCICDRepo.git'
 
 }
 
@@ -23,10 +23,10 @@ stages {
      steps{
 	     script{
 		     dir('main'){
-			    // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
-			    // {
-     codeChekOut("${params.branch_name}")
-			  //   }
+			      // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
+			   
+     codeChekOut("${params.branch_name}","${GITHUB_MAIN_CODE}")
+			 
 		     }
 	     }
 }
@@ -38,8 +38,9 @@ stages {
 
 }
 
-def codeChekOut(String branch_name, String git_sourcecode_repo)
+def codeChekOut(String branch_name, String GITHUB_URL)
 {
  git branch: branch_name
+ url: GITHUB_URL
 
 }
