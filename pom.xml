@@ -19,25 +19,30 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
   
+  <scm>
+    <connection>scm:svn:http://somerepository.com/svn_repo/trunk</connection>
+    <developerConnection>scm:svn:https://somerepository.com/svn_repo/trunk</developerConnection>
+    <url>http://somerepository.com/view.cvs</url>
+  </scm>
+  
   <distributionManagement>
    <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://localhost:8083/nexus/repository/maven-snapshots/</url>
+      <id>nexus-remote</id>
+      <url>http://localhost:8082/repository/maven-snapshots/</url>
    </snapshotRepository>
 </distributionManagement>
 
-  <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-<dependency>
+ <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>servlet-api</artifactId>
     <version>2.5</version>
-</dependency>
+ </dependency>
   </dependencies>
 
   <build>
@@ -51,7 +56,7 @@
        <configuration>
           <url>http://localhost:8082/manager/text</url>
 		  <server>dev</server>
-		  <path>/hsbc_core</path>
+		  <path>/hsbc</path>
         </configuration>
      </plugin>
       </plugins>
