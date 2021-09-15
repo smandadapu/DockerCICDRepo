@@ -10,7 +10,7 @@ parameters {
 
 string(name: 'branch_name', defaultValue: 'master', description: 'branch name to select dynamically' )
 string(name: 'env_name', defaultValue: 'dev', description: 'deployment environment selection' )
-String(name: 'git_cred' defaultValue: 'git-token' description: 'jenkins with github authetication')
+String(name: 'git_cred', defaultValue: 'git-token', description: 'jenkins with github authetication')
 } 
 
 environment {
@@ -26,7 +26,7 @@ stages {
 		     dir('main'){
 			      // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
 			   
-     codeChekOut("${params.branch_name}","{params.git_cred}""${GITHUB_MAIN_CODE}")
+     codeChekOut("${params.branch_name}","{params.git_cred}","${GITHUB_MAIN_CODE}")
 			 
 		     }
 	     }
