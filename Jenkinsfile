@@ -10,7 +10,7 @@ parameters {
 
 string(name: 'branch_name', defaultValue: 'master', description: 'branch name to select dynamically' )
 string(name: 'env_name', defaultValue: 'dev', description: 'deployment environment selection' )
-String(name: 'git_cred', defaultValue: 'git-token', description: 'jenkins with github authetication')
+string(name: 'git_cred', defaultValue: 'git-token', description: 'jenkins with github authetication')
 } 
 
 environment {
