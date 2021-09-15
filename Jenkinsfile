@@ -14,7 +14,7 @@ string(name: 'git_cred', defaultValue: 'git-token', description: 'jenkins with g
 } 
 
 environment {
-GITHUB_MAIN_CODE='https://github.com/smandadapu/DockerCICDRepo.git'
+GITHUB_MAIN_CODE='https://github.com/smandadapu/Git_jenkins_repo.git'
 
 }
 
