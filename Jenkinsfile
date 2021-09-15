@@ -6,6 +6,12 @@ options {
 buildDiscarder(logRotator(numToKeepStr: '5')) 
 }
 
+tools {
+        maven 'maven-3.5'
+        jdk 'jdk11'
+		git 'git-v2'
+    }
+
 parameters {
 
 string(name: 'branch_name', defaultValue: 'master', description: 'branch name to select dynamically' )
@@ -24,7 +30,8 @@ stages {
      steps{
 	     script{
 		     dir('main'){
-			      // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
+			  // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
+			  // withEnv(["M2_HOME=${tool 'maven-'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
 			   
      codeChekOut("${params.branch_name}","${params.git_cred}","${GITHUB_MAIN_CODE}")
 			 
