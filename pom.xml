@@ -24,14 +24,7 @@
     <developerConnection>scm:svn:https://somerepository.com/svn_repo/trunk</developerConnection>
     <url>http://somerepository.com/view.cvs</url>
   </scm>
-  
-  <distributionManagement>
-   <snapshotRepository>
-      <id>nexus-remote</id>
-      <url>http://localhost:8082/repository/maven-snapshots/</url>
-   </snapshotRepository>
-</distributionManagement>
-
+<dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
