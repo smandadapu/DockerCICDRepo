@@ -15,11 +15,12 @@ stages {
    
    }
    
-   stage(checkout)
+   stage(build)
    {
     steps 
 	  {
-	    bat "mvn -Dmaven.test.failure.ignore=true clean install sonar:sonar -Dsonar.login=be89306b30a826e8dc159c0e6da4397265a93d75"
+	    bat "mvn -Dmaven.test.failure.ignore=true clean install"
+	    bat "mvn sonar:sonar -Dsonar.login="
 	  }
    
    }
