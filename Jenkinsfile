@@ -1,55 +1,39 @@
-#!/usr/bin/env groovy
-pipeline { 
-agent any
+pipeline {
 
-options {
-buildDiscarder(logRotator(numToKeepStr: '5')) 
-}
+ agent { label 'prod' }    //agent any
 
-tools {
-        maven 'maven-3.5'
-        jdk 'jdk11'
-		git 'git-v2'
-    }
-
-parameters {
-
-string(name: 'branch_name', defaultValue: 'master', description: 'branch name to select dynamically' )
-string(name: 'env_name', defaultValue: 'dev', description: 'deployment environment selection' )
-string(name: 'git_cred', defaultValue: 'git-token', description: 'jenkins with github authetication')
-} 
-
-environment {
-GITHUB_MAIN_CODE='https://github.com/smandadapu/Git_jenkins_repo.git'
-
-}
 
 stages {
-    stage("code checkout")
-	{
-     steps{
-	     script{
-		     dir('main'){
-			  // withEnv(["GROOVY_HOME=${tool 'groovy-4'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
-			  // withEnv(["M2_HOME=${tool 'maven-'}", "PATH=${tool 'groovy-4'}/bin:${PATH}"])
-			   
-     codeChekOut("${params.branch_name}","${params.git_cred}","${GITHUB_MAIN_CODE}")
-			 
-		     }
-	     }
+  stage(checkout)
+   {
+    steps 
+	  {
+	   git 'https://github.com/smandadapu/DockerCICDRepo.git'
+	   
+	   checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/smandadapu/DockerCICDRepo.git']]])
+	  }
+   
+   }
+   
+   stage(checkout)
+   {
+    steps 
+	  {
+	    bat "mvn -Dmaven.test.failure.ignore=true clean install sonar:sonar -Dsonar.login=be89306b30a826e8dc159c0e6da4397265a93d75"
+	  }
+   
+   }
+   post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    archiveArtifacts 'target/*.war'
+                }
+            }
+
 }
-}
-}
 
 
 
-
-}
-
-def codeChekOut(String branch_name, String git_cred, String GITHUB_URL)
-{
- git branch: branch_name
- url: GITHUB_URL
- credentialsId: git_cred
 
 }
