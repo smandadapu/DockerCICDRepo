@@ -8,7 +8,7 @@ stages {
    {
     steps 
 	  {
-	   git 'https://github.com/smandadapu/DockerCICDRepo.git'
+	   // git 'https://github.com/smandadapu/DockerCICDRepo.git'
 	   
 	   checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/smandadapu/DockerCICDRepo.git']]])
 	  }
