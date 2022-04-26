@@ -52,7 +52,7 @@
         <artifactId>tomcat-maven-plugin</artifactId>
 		<version>1.1</version>
        <configuration>
-          <url>http://localhost:8082/manager/text</url>
+          <url>http://localhost:8083/manager/text</url>
 		  <server>dev</server>
 		  <path>/hsbc</path>
         </configuration>
